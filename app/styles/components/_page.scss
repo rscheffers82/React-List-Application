@@ -1,3 +1,7 @@
+body {
+  background: url(http://img.hrhwalls.com/images2/kqh5ncsbd3w.jpg) no-repeat center center fixed;
+}
+
 .page-title {
   margin: 0;
   padding: 2rem 0;
@@ -10,6 +14,9 @@
   border-radius: 5px;
   padding: 0;
   margin-bottom: 2rem;
+  -webkit-box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
+  -moz-box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
+  box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
 }
 
 .container__header {
