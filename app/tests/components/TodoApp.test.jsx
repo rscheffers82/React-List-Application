@@ -8,7 +8,7 @@ var TodoApp = require('TodoApp');
 
 describe('TodoApp', () => {
   it('should exist', () => {
-    expect(TodoApp).toExist(TodoApp);
+    expect(TodoApp).toExist();
   });
 
   it('should add todo to the todos state on handleAddTodo', () => {
