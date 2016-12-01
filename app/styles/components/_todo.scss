@@ -3,7 +3,9 @@
   cursor: pointer;
   display: flex;
   padding: 1rem;
+  font-size: 1.2rem;
   transition: background .3s ease;
+
 
   p, input {
     margin: 0;
@@ -25,6 +27,9 @@
   }
 }
 
-.todo__subtext {
+p.todo__subtext {
   color: #999;
+  font-size: 0.8rem;
+  padding-top: 0.2rem;
+  font-style: italic;
 }
