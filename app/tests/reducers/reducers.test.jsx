@@ -26,4 +26,43 @@ describe('Reducers', () => {
       expect(res).toEqual(true)
     });
   });
+
+  describe('todosReducer', () => {
+    it('should add new todo', () => {
+      var action = {
+        type: 'ADD_TODO',
+        text: 'Todo sample text'
+      };
+      var res = reducers.todosReducer( df([]), df(action) );
+
+      expect(res.length).toEqual(1);
+      expect(res[0].text).toEqual(action.text);
+    });
+
+    it('should toggle todo', () => {
+      var todos = [{
+        id: 1,
+        text: 'first todo item',
+        completed: true,
+        createdAt: '12 July',
+        completedAt: undefined
+      }];
+
+      var action = {
+        type: 'TOGGLE_TODO',
+        id: 1
+      };
+
+      var res = reducers.todosReducer( df(todos), df(action) );
+      expect(res[0].completed).toEqual(false);
+      expect(res[0].completedAt).toEqual(undefined);
+    });
+    // Create todo array
+    // generate action
+    // call reducer and assert completed flipped
+    // completedAt undefined in those cases
+
+
+  });
+
 });
