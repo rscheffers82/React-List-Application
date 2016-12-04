@@ -25,6 +25,7 @@ export var showCompletedReducer = (state = false, action) => {
 
 export var todosReducer = (state = [], action) => {
   switch (action.type) {
+
     case 'ADD_TODO':
       return [
         ...state,
@@ -36,6 +37,13 @@ export var todosReducer = (state = [], action) => {
           completedAt: undefined
         }
       ];
+
+    case 'ADD_TODOS':
+      return [
+        ...state,
+        ...action.todos
+      ];
+
     case 'TOGGLE_TODO':
       return state.map( (todo) => {
         if ( todo.id === action.id ) {
@@ -50,17 +58,7 @@ export var todosReducer = (state = [], action) => {
           return todo;
         }
       });
-      // [
-      //   ...state,
-      //   {
-      //     id: action.id,
-      //     completed: !action.completed,
-      //     completedAt: action.completed ? undefined : 'now',
-      //   }
-      // ];
-      // match the ID, so we toggle the correct item
-      // change completed to !copleth
-      // update updateCompleteAt..
+
     default:
       return state;
   }
