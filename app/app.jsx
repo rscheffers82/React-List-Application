@@ -12,9 +12,10 @@ store.subscribe( () => {
   console.log( 'New state', store.getState() );
 });
 
-store.dispatch( actions.addTodo('Upgrade my laptop') );
-store.dispatch( actions.setSearchText('laptop') );
-store.dispatch( actions.toggleShowCompleted() );
+store.dispatch( actions.addTodo('Upgrade laptop') );
+store.dispatch( actions.addTodo('Walk dog') );
+store.dispatch( actions.addTodo('Visit gym') );
+
 
 
 // Load foundation

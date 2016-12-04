@@ -9,7 +9,7 @@ var moment = require('moment');
 // using import we use the default import (connect instead of the raw element)
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-var TodoSearch = require('TodoSearch');
+import TodoSearch from 'TodoSearch';
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
