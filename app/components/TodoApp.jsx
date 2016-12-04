@@ -3,9 +3,12 @@ var uuid = require('node-uuid');
 var moment = require('moment');
 
 // var TodoList = require('TodoList');
-import TodoList from 'TodoList';
+// var AddTodo = require('AddTodo');
 
-var AddTodo = require('AddTodo');
+// the below are updated when we introduced react-redux
+// using import we use the default import (connect instead of the raw element)
+import TodoList from 'TodoList';
+import AddTodo from 'AddTodo';
 var TodoSearch = require('TodoSearch');
 var TodoAPI = require('TodoAPI');
 
