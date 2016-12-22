@@ -24,13 +24,37 @@ firebaseRef.set({
   }
 });
 
+
+
+
+
+
+// firebaseRef.once('value').then( (snapshot) => {
+//   console.log('Got entire database', snapshot.val() );
+// }, (e) => {
+//   console.log('Unable to fetch value. ', e);
+// });
+
+// add listener for value changes using on, use child to make a specific object listener
+// Function should be fired when the app name is changes, not when the username is changed
+// firebaseRef.child('app').on('value', (snapshot) => {
+//   console.log( 'Data: ', snapshot.val() );
+// });
+//
+// firebaseRef.child('app').update({ name: 'Different App name'});
+//
+// firebaseRef.child('user').update({ name: 'Zorana Telebak'});
+
 // update a value on the main branch of the tree
-firebaseRef.update({
-  'app/name': 'Todo Application branch',
-  'user/name': 'Roy Scheffers branch'
-});
+// firebaseRef.update({
+//   'app/name': 'Todo Application branch',
+//   'user/name': 'Roy Scheffers branch'
+// });
 
+// Remove a property in the db
+// firebaseRef.child('app/name').remove();
 
+// firebaseRef.child('app').update ({ name: null });
 // use multipaths to update multiple values
 // firebaseRef.child('app').update({
 //   name: 'Todo Application'
