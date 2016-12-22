@@ -14,7 +14,7 @@ var firebaseRef = firebase.database().ref();
 
 firebaseRef.set({
   app: {
-    name: '',
+    name: 'Todo App',
     version: '0.0.1'
   },
   isRunning: true,
@@ -22,16 +22,19 @@ firebaseRef.set({
     name: 'Andrew',
     age: 25
   }
-}).then( () => {
-  console.log('Set worked!');
-}, (e) => {
-  console.log('Set failed!');
-})
-
-firebaseRef.child('user').set({
-  name: 'Mike'
 });
 
-firebaseRef.child('app').set({
-  name: 'Todo Application '
+// update a value on the main branch of the tree
+firebaseRef.update({
+  'app/name': 'Todo Application branch',
+  'user/name': 'Roy Scheffers branch'
 });
+
+
+// use multipaths to update multiple values
+// firebaseRef.child('app').update({
+//   name: 'Todo Application'
+// });
+// firebaseRef.child('user').update({
+//   name: 'Roy Scheffers'
+// });
