@@ -10,6 +10,28 @@ var config = {
 };
 firebase.initializeApp(config);
 
-firebase.database().ref().set({
-  appName: 'Todo App'
+var firebaseRef = firebase.database().ref();
+
+firebaseRef.set({
+  app: {
+    name: '',
+    version: '0.0.1'
+  },
+  isRunning: true,
+  user: {
+    name: 'Andrew',
+    age: 25
+  }
+}).then( () => {
+  console.log('Set worked!');
+}, (e) => {
+  console.log('Set failed!');
+})
+
+firebaseRef.child('user').set({
+  name: 'Mike'
+});
+
+firebaseRef.child('app').set({
+  name: 'Todo Application '
 });
