@@ -24,9 +24,30 @@ firebaseRef.set({
   }
 });
 
+// Create a var that stores the reference to the todos array
+// child_added, log the key and value to the console
+// add two todos
 
+var todosRef = firebaseRef.child('todos');
 
+todosRef.on('child_added', (snapshot) => {
+  console.log( 'child_added', snapshot.val() );
+});
 
+todosRef.on('child_changed', (snapshot) => {
+  console.log( 'child_changed', snapshot.val() );
+});
+todosRef.on('child_removed', (snapshot) => {
+  console.log( 'child_removed', snapshot.val() );
+});
+
+todosRef.push({
+  text: 'Talk to Zoki'
+});
+
+todosRef.push({
+  text: '2nd todo item'
+});
 
 
 // firebaseRef.once('value').then( (snapshot) => {
