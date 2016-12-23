@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
 
+import firebase, {firebaseRef} from 'app/firebase/';
 var actions = require('actions');
 
 var createMockStore = configureMockStore([thunk]);
@@ -76,14 +77,57 @@ describe('Actions', () =>{
     expect(res).toEqual(action);
   });
 
-  it('should generate toggle todo action', () => {
+  it('should generate update todo action', () => {
     var action = {
-      type: 'TOGGLE_TODO',
-      id: 5
+      type: 'UPDATE_TODO',
+      id: '5',
+      updates: {completed: false}
     };
-    var res = actions.toggleTodo(action.id);
+    var res = actions.updateTodo(action.id, action.updates);
 
     expect(res).toEqual(action);
   });
 
+  describe('Tests with firebase todos', () => {
+    var testTodoRef;
+
+    beforeEach( (done) => {
+      testTodoRef = firebaseRef.child('todos').push();
+
+      testTodoRef.set({
+        text: 'Test for our todo item',
+        completed: false,
+        createdAt: 1233456
+      }).then( () => done() );
+    });
+
+    afterEach( (done) => {
+      testTodoRef.remove().then( () => done() );
+    });
+
+    it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
+      const store = createMockStore({});
+      const action = actions.startToggleTodo(testTodoRef.key, true);
+
+      store.dispatch(action).then( () => {
+        const mockActions = store.getActions();
+
+        // check type and ID type
+        expect(mockActions[0]).toInclude({
+          type: 'UPDATE_TODO',
+          id: testTodoRef.key
+        });
+
+        // check the updates object for correct values
+        expect(mockActions[0].updates).toInclude({
+          completed: true
+        });
+
+        // because a timestamp is dynamically added with can only assert it exists
+        expect( mockActions[0].updates.completedAt).toExist();
+
+        done();
+      }, done ); // when called like this instead of done() mocka assumes the test failed
+    });
+  });
 });
