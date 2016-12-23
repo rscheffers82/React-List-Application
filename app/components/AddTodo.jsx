@@ -13,7 +13,7 @@ export var AddTodo = React.createClass({
 
       if ( todoText.length > 0 ) {
         this.refs.todoText.value = '';
-        dispatch( actions.addTodo(todoText) );
+        dispatch( actions.startAddTodo(todoText) );
         // because we use connect, we have access to the dispatch function in props. We just need to pull
         // it off as done in line 11, after e.preventDefault().
       } else {
