@@ -92,13 +92,19 @@ describe('Actions', () =>{
     var testTodoRef;
 
     beforeEach( (done) => {
-      testTodoRef = firebaseRef.child('todos').push();
+      var todosRef = firebaseRef.child('todos');
 
-      testTodoRef.set({
-        text: 'Test for our todo item',
-        completed: false,
-        createdAt: 1233456
-      }).then( () => done() );
+      todosRef.remove().then( () => {
+        testTodoRef = firebaseRef.child('todos').push();
+
+        return testTodoRef.set({
+          text: 'Test for our todo item',
+          completed: false,
+          createdAt: 1233456
+        })
+      })
+      .then( () => done() )
+      .catch(done);
     });
 
     afterEach( (done) => {
@@ -128,6 +134,25 @@ describe('Actions', () =>{
 
         done();
       }, done ); // when called like this instead of done() mocka assumes the test failed
+    });
+
+    it('should populate todos and dispatch ADD_TODOS', (done) => {
+      // create the store and action
+      // dispatch the ADD_TODOS action
+      // verify on the store which actions were dispatched
+      // - add todos action, array with one item
+      // - check the text from above.
+      const store = createMockStore({});
+      const action = actions.startAddTodos();
+
+      store.dispatch( action ).then( () => {
+        const mockActions = store.getActions();
+
+        expect(mockActions[0].type).toEqual('ADD_TODOS');
+        expect(mockActions[0].todos.length).toEqual(1);
+        expect(mockActions[0].todos[0].text).toEqual('Test for our todo item');
+        done();
+      }, done)
     });
   });
 });

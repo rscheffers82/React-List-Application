@@ -55,23 +55,23 @@ export var addTodos = (todos) => {
 export var startAddTodos = () => {
   // function to be called with thunk and thus provide access to dispatch and getState
   return (dispatch, getState) => {
-    var TodosRef = firebaseRef.child('todos');
+    var todosRef = firebaseRef.child('todos');
 
-    return TodosRef.once('value').then( (snapshot) => {
+    return todosRef.once('value').then( (snapshot) => {
       var todos = snapshot.val() || {};
       var todosArray = [];
       // Transform Object into an array
       Object.keys( todos ).forEach( ( todoID ) => {
-        todoArray.push({
+        todosArray.push({
           id: todoID,
           ...todos[todoID]
         });
       });
-      store.dispatch( addTodos(todosArray) );
-    }, (e) => {
-      console.log('Unable to fetch data from FireBase', e);
-    });
 
+      dispatch( addTodos(todosArray) );
+    // }, (e) => {
+    //   console.log('Unable to fetch data from FireBase', e);
+    });
   };
 };
 
