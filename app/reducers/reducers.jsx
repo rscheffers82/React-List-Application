@@ -2,7 +2,7 @@ var uuid = require('node-uuid');
 var moment = require('moment');
 
 export var searchTextReducer = (state = '', action) => {
-  // with the user of deep freeze, state and action should not change as they should be pure functions.
+  // with the use of deep freeze, state and action should not change as they should be pure functions.
   // the below will therefor let the test fail
   // action.something = 'I should not be added';
 
