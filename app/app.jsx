@@ -12,20 +12,7 @@ var TodoAPI = require('TodoAPI');
 // Used to test several firebase functions before refactoring the app to work with FireBase
 // import './../playground/firebase/index';
 
-store.subscribe( () => {
-  var state = store.getState();
-  console.log( 'New state', state );
-  TodoAPI.setTodos(state.todos)
-});
-
-var initialTodos = TodoAPI.getTodos();
-store.dispatch( actions.addTodos(initialTodos) );
-
-// store.dispatch( actions.addTodo('Upgrade laptop') );
-// store.dispatch( actions.addTodo('Walk dog') );
-// store.dispatch( actions.addTodo('Visit gym') );
-
-
+store.dispatch( actions.startAddTodos() );
 
 // Load foundation
 $(document).foundation();

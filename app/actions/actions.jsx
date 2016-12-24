@@ -48,6 +48,33 @@ export var addTodos = (todos) => {
   };
 };
 
+// call data from firebase (object)
+// transform it into an array
+// push this to the store
+// move the key to the value you can use Object.keys();
+export var startAddTodos = () => {
+  // function to be called with thunk and thus provide access to dispatch and getState
+  return (dispatch, getState) => {
+    var TodosRef = firebaseRef.child('todos');
+
+    return TodosRef.once('value').then( (snapshot) => {
+      var todos = snapshot.val() || {};
+      var todosArray = [];
+      // Transform Object into an array
+      Object.keys( todos ).forEach( ( todoID ) => {
+        todoArray.push({
+          id: todoID,
+          ...todos[todoID]
+        });
+      });
+      store.dispatch( addTodos(todosArray) );
+    }, (e) => {
+      console.log('Unable to fetch data from FireBase', e);
+    });
+
+  };
+};
+
 export var updateTodo = (id, updates) => {
   return {
     type: 'UPDATE_TODO',
