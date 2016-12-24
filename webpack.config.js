@@ -1,6 +1,12 @@
 var webpack = require('webpack');
 var path = require('path');
 
+// on heroku the environment var is set to production, on localhost it doesn't exist and thus is set to development
+// to set the NODE_ENV var once run the following in the terminal
+// NODE_ENV=production webpack
+// add the -p flag to optimize the bundle.js file  --- NODE_ENV=production webpack -p
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
@@ -14,6 +20,11 @@ module.exports = {
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
     })
   ],
   output: {
@@ -53,5 +64,5 @@ module.exports = {
       path.resolve(__dirname, './node_modules/foundation-sites/scss')
     ]
   },
-  devtool: 'inline-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map'
 };
