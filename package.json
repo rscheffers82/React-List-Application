@@ -4,7 +4,7 @@
   "description": "React ToDo Application",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/karma start",
+    "test": "SET NODE_ENV=test& karma start",
     "build": "webpack",
     "start": "npm run build && node server.js"
   },
