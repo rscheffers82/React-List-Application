@@ -12,8 +12,8 @@ try {
   };
   firebase.initializeApp(config);
 
-} catch (e) {
+} catch (e) {}  // do nothing when the above fails
 
-}
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export var firebaseRef = firebase.database().ref();
 export default firebase;
