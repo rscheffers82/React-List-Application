@@ -1,17 +1,23 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {Provider} = require('react-redux');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
+var {hashHistory} = require('react-router');
 
-import Main from 'Main';
-import Login from 'Login';
-import TodoApp from 'TodoApp';
 var actions = require('actions');
 var store = require('configureStore').configure();
-var TodoAPI = require('TodoAPI');
+import firebase from 'app/firebase/';
+import router from 'app/router/'
+// if the name is index.js / .jsx no need to specify the file
 
-// Used to test several firebase functions before refactoring the app to work with FireBase
-// import './../playground/firebase/index';
+firebase.auth().onAuthStateChanged( (user) => {
+  // Function that is called whenever a login status changes
+  // When the user var is present, a user just logged in
+  if (user) {
+    hashHistory.push('/todos');
+  } else {
+    hashHistory.push('/');
+  }
+});
 
 store.dispatch( actions.startAddTodos() );
 
@@ -24,12 +30,7 @@ require('style!css!sass!applicationStyles')
 ReactDOM.render(
   // Provider is used to connect redux with react. The store is made available to all children components
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path='/' component={Main}>
-        <Route path='todos' component={TodoApp}/>
-        <IndexRoute component={Login}/>
-      </Route>
-    </Router>
+    {router}
   </Provider>,
   document.getElementById('app')
 );
