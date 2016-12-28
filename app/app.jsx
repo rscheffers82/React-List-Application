@@ -13,8 +13,10 @@ firebase.auth().onAuthStateChanged( (user) => {
   // Function that is called whenever a login status changes
   // When the user var is present, a user just logged in
   if (user) {
+    store.dispatch( actions.login( user.uid) );
     hashHistory.push('/todos');
   } else {
+    store.dispatch( actions.logout() );
     hashHistory.push('/');
   }
 });

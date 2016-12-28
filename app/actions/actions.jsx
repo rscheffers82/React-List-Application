@@ -48,6 +48,19 @@ export var addTodos = (todos) => {
   };
 };
 
+export var login = (uid) => {
+  return {
+    type: 'LOGIN',
+    uid
+  };
+};
+
+export var logout = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
+
 // call data from firebase (object)
 // transform it into an array
 // push this to the store

@@ -155,4 +155,26 @@ describe('Actions', () =>{
       }, done)
     });
   });
+
+  describe('Authentication', () => {
+    it('should generate LOGIN action', () => {
+      const action = {
+        type: 'LOGIN',
+        uid: '123456'
+      };
+      const res = actions.login( action.uid );
+      
+      expect(res).toEqual(action);
+    });
+
+    it('should generate LOGOUT action', () => {
+      const action = {
+        type: 'LOGOUT'
+      };
+      const res = actions.logout();
+
+      expect(res).toEqual(action);
+    });
+  });
+
 });

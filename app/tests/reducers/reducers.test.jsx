@@ -91,12 +91,27 @@ describe('Reducers', () => {
       expect(res[0].text).toEqual(todos[0].text);
 
     });
-    // Create todo array
-    // generate action
-    // call reducer and assert completed flipped
-    // completedAt undefined in those cases
+  });
+  describe('authReducer', () => {
+    it('should login user', () => {
+      var auth = {};
+      var action = {
+        type: 'LOGIN',
+        uid: '12345'
+      }
+      var res = reducers.authReducer( df(auth), df(action) );
 
+      expect(res.uid).toEqual( action.uid );
+    });
 
+    it('should logout user', () => {
+      var auth = { uid: '12345' };
+      var action = { type: 'LOGOUT' }
+
+      var res = reducers.authReducer( df(auth), df(action) );
+
+      expect(res.uid).toEqual(undefined);
+    });
   });
 
 });
