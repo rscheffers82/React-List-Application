@@ -13,15 +13,14 @@ firebase.auth().onAuthStateChanged( (user) => {
   // Function that is called whenever a login status changes
   // When the user var is present, a user just logged in
   if (user) {
-    store.dispatch( actions.login( user.uid) );
-    hashHistory.push('/todos');
+    store.dispatch( actions.login( user.uid) );   // push the user log details to the store
+    store.dispatch( actions.startAddTodos() );    // load the todo data from firebase and push to the store
+    hashHistory.push('/todos');                   // redirect the user to the todo area of the app
   } else {
     store.dispatch( actions.logout() );
     hashHistory.push('/');
   }
 });
-
-store.dispatch( actions.startAddTodos() );
 
 // Load foundation
 $(document).foundation();

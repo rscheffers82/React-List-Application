@@ -93,22 +93,21 @@ describe('Reducers', () => {
     });
   });
   describe('authReducer', () => {
-    it('should login user', () => {
-      var auth = {};
-      var action = {
+    it('should store uid on LOGIN', () => {
+      const action = {
         type: 'LOGIN',
         uid: '12345'
       }
-      var res = reducers.authReducer( df(auth), df(action) );
+      const res = reducers.authReducer( undefined, df(action) );
 
       expect(res.uid).toEqual( action.uid );
     });
 
-    it('should logout user', () => {
-      var auth = { uid: '12345' };
-      var action = { type: 'LOGOUT' }
+    it('should clear auth on LOGOUT', () => {
+      const auth = { uid: '12345' };
+      const action = { type: 'LOGOUT' };
 
-      var res = reducers.authReducer( df(auth), df(action) );
+      const res = reducers.authReducer( df(auth), df(action) );
 
       expect(res.uid).toEqual(undefined);
     });
