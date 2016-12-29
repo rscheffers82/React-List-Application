@@ -63,7 +63,6 @@ describe('Reducers', () => {
       expect(res[0]).toEqual(todos[0]);
     });
 
-
     it('should update todo', () => {
       var todos = [{
         id: 1,
@@ -91,7 +90,26 @@ describe('Reducers', () => {
       expect(res[0].text).toEqual(todos[0].text);
 
     });
+
+    it('should delete all todos on LOGOUT', () => {
+      const todos = [{
+        id: 1,
+        text: 'Test todo item',
+        completed: true,
+        createdAt: '6 December 1982',
+        completedAt: undefined
+      }];
+
+      const action = {
+        type: 'LOGOUT'
+      };
+
+      const res = reducers.todosReducer( df(todos), df(action) );
+
+      expect(res).toEqual([]);
+    });
   });
+
   describe('authReducer', () => {
     it('should store uid on LOGIN', () => {
       const action = {
