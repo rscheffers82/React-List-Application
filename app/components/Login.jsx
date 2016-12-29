@@ -8,7 +8,7 @@ export var Login = React.createClass({
   onLogin() {
     var {dispatch} = this.props;
 
-    dispatch( actions.startLogin() );
+    dispatch( actions.startLogin('google') );
   },
   render() {
     return (
@@ -18,8 +18,8 @@ export var Login = React.createClass({
           <div className="columns small-centered small-10 midium-6 large-4">
             <div className="callout callout-auth">
               <h3>Login</h3>
-              <p>Login with your GitHub account.</p>
-              <button className="button" onClick={this.onLogin}>Login with GitHub</button>
+              <p>Login with your google account.</p>
+              <button className="button" ref="github" onClick={this.onLogin}>Login with Google</button>
             </div>
           </div>
         </div>

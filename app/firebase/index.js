@@ -14,6 +14,11 @@ try {
 
 } catch (e) {}  // do nothing when the above fails
 
-export var githubProvider = new firebase.auth.GithubAuthProvider();
+// export var githubProvider = new firebase.auth.GithubAuthProvider();
+export var loginProvider = {
+  // 'facebook' : new firebase.auth.FacebookAuthProvider(),
+  // 'github' : new firebase.auth.GithubAuthProvider(),
+  'google' : new firebase.auth.GoogleAuthProvider()
+}
 export var firebaseRef = firebase.database().ref();
 export default firebase;

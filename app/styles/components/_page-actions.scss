@@ -1,17 +1,17 @@
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1rem 2rem 0 0;
-}
-
-// .page-actions a{
-//   margin: 1rem 1rem 0 0;
-//   display: inline-block;
-//   background-color: rgba(250,250,250,0.6);
-//   padding: 1rem;
-//   border-radius: 3px;
-// }
 // .page-actions {
-//   display: inline-block;
-//   float: right;
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: 1rem 2rem 0 0;
 // }
+
+.page-actions a{
+  margin: 1rem 1rem 0 0;
+  display: inline-block;
+  background-color: rgba(250,250,250,0.6);
+  padding: 1rem;
+  border-radius: 3px;
+}
+.page-actions {
+  display: inline-block;
+  float: right;
+}
