@@ -8,7 +8,7 @@ I sure do! It's deployed on Heroku, just click [here](https://thawing-river-9423
 ### So, how do I run this locally? I want to play around!
 1. Clone or download this repo *
 2. Open the folder in your terminal
-3. Install dependancies with 'npm install'
+3. Install dependancies with `npm install`
 4. type `npm run start`
 
 ** <i>This project runs on a node server, please ensure [node](https://nodejs.org/en/) is installed.</i>
