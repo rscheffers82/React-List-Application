@@ -3,7 +3,7 @@ import firebase from 'firebase';
 try {
 
   // Initialize Firebase, within a try-catch to ensure it's only called once
-  var config = {
+  const config = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     databaseURL: process.env.DATABASE_URL,
@@ -15,10 +15,10 @@ try {
 } catch (e) {}  // do nothing when the above fails
 
 // export var githubProvider = new firebase.auth.GithubAuthProvider();
-export var loginProvider = {
+export const loginProvider = {
   // 'facebook' : new firebase.auth.FacebookAuthProvider(),
   // 'github' : new firebase.auth.GithubAuthProvider(),
   'google' : new firebase.auth.GoogleAuthProvider()
 }
-export var firebaseRef = firebase.database().ref();
+export const firebaseRef = firebase.database().ref();
 export default firebase;

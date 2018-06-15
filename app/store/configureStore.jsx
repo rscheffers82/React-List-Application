@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import {searchTextReducer, showCompletedReducer, todosReducer, authReducer} from 'reducers';
 
-export var configure = ( initialState = {} ) => {
+export const configure = ( initialState = {} ) => {
   var reducer = redux.combineReducers({
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,

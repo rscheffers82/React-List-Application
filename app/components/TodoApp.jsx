@@ -1,18 +1,19 @@
-import React from 'react';
-import * as Redux from 'react-redux';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
-import * as actions from 'actions';
+import { startLogout } from 'actions';
 
-export var TodoApp = React.createClass({
-  onLogout(e) {
-    var {dispatch} = this.props;
+export class TodoApp extends Component {
+  onLogout = (e) => {
+    const {dispatch} = this.props;
     e.preventDefault();
 
-    dispatch( actions.startLogout() );
-  },
+    dispatch(startLogout());
+  }
+
   render() {
     return (
       <div>
@@ -33,9 +34,9 @@ export var TodoApp = React.createClass({
       </div>
     );
   }
-});
+};
 // ES6 syntax to use import instead of require
-export default Redux.connect()(TodoApp);
+export default connect()(TodoApp);
 
 // below is the older syntax
 // modules.exports = TodoApp;

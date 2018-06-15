@@ -1,7 +1,7 @@
 // var uuid = require('node-uuid');
 // var moment = require('moment');
 
-export var searchTextReducer = (state = '', action) => {
+export const searchTextReducer = (state = '', action) => {
   // with the use of deep freeze, state and action should not change as they should be pure functions.
   // the below will therefor let the test fail
   // action.something = 'I should not be added';
@@ -14,7 +14,7 @@ export var searchTextReducer = (state = '', action) => {
   }
 };
 
-export var showCompletedReducer = (state = false, action) => {
+export const showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':
       return !state;
@@ -23,7 +23,7 @@ export var showCompletedReducer = (state = false, action) => {
   }
 };
 
-export var todosReducer = (state = [], action) => {
+export const todosReducer = (state = [], action) => {
   switch (action.type) {
 
     case 'ADD_TODO':
@@ -58,7 +58,7 @@ export var todosReducer = (state = [], action) => {
   }
 };
 
-export var authReducer = (state = {}, action) => {
+export const authReducer = (state = {}, action) => {
   switch (action.type) {
 
     case 'LOGIN':

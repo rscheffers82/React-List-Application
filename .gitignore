@@ -3,3 +3,4 @@ other/
 playground/es6-classes/
 public/bundle.js
 config/
+.vscode

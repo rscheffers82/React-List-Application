@@ -1,15 +1,12 @@
-import React from 'react';
-import * as Redux from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import * as actions from 'actions';
+import { startLogin } from 'actions';
 
 // this export is used for tests
-export var Login = React.createClass({
-  onLogin() {
-    var {dispatch} = this.props;
+export class Login extends Component {
+  onLogin = () => this.props.dispatch(startLogin('google'));
 
-    dispatch( actions.startLogin('google') );
-  },
   render() {
     return (
       <div>
@@ -26,6 +23,6 @@ export var Login = React.createClass({
       </div>
     );
   }
-});
+};
 // using the default to pass to connect
-export default Redux.connect()(Login);
+export default connect()(Login);
