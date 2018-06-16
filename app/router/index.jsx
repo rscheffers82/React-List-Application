@@ -9,25 +9,28 @@ import firebase from 'app/firebase/';
 // replace is the react route or URL
 // next() signifies to continue
 // load the middleware in using onEnter and specify the function to run
-var requireLogin = (nextState, replace, next) => {
-  if (!firebase.auth().currentUser) {
-    replace('/');
-  }
-  next();
-};
+// var requireLogin = (nextState, replace, next) => {
+//   if (!firebase.auth().currentUser) {
+//     replace('/');
+//   }
+//   next();
+// };
 
-var redirectIfLoggedIn = (nextState, replace, next) => {
-  if (firebase.auth().currentUser) {
-    replace('/todos');
-  }
-  next();
-};
+// var redirectIfLoggedIn = (nextState, replace, next) => {
+//   if (firebase.auth().currentUser) {
+//     replace('/todos');
+//   }
+//   next();
+// };
 
 export default (
-  <Router history={hashHistory}>
-    <Route path='/'>
-      <Route path='todos' component={TodoApp} onEnter={requireLogin}/>
-      <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
-    </Route>
-  </Router>
+  // <Router history={hashHistory}>
+  //   <Route path='/'>
+  //     <Route path='todos' component={TodoApp} onEnter={requireLogin}/>
+  //     <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
+  //   </Route>
+  // </Router>
+  <div>
+  router here...
+  </div>
 );
