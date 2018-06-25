@@ -99,21 +99,23 @@ export const startToggleTodo = (id, completed) => {
   };
 };
 
-export const startLogin = (platform) => {
+export const startLogin = (platform, history) => {
   return (dispatch, getState) => {
     // return firebase.auth().signInWithPopup(githubProvider).then( (result) => {
     // console.log('platform(into actions.jsx): ', platform)
     return firebase.auth().signInWithPopup(loginProvider[platform]).then( (result) => {
       console.log('Auth worked!', result);
+      history.push('/todos');
     }, (error) => {
       console.log('Unable to auth', error);
     });
   };
 };
 
-export const startLogout = () => {
+export const startLogout = (history) => {
   return (dispatch, getState) => {
     return firebase.auth().signOut().then( () => {
+      history.push('/');
       console.log('Logged out!');
     });
   };

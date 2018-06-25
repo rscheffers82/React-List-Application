@@ -8,10 +8,10 @@ import { startLogout } from 'actions';
 
 export class TodoApp extends Component {
   onLogout = (e) => {
-    const {dispatch} = this.props;
+    const { dispatch, history } = this.props;
     e.preventDefault();
 
-    dispatch(startLogout());
+    dispatch(startLogout(history));
   }
 
   render() {

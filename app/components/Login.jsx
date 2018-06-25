@@ -5,7 +5,9 @@ import { startLogin } from 'actions';
 
 // this export is used for tests
 export class Login extends Component {
-  onLogin = () => this.props.dispatch(startLogin('google'));
+  onLogin = () => {
+    this.props.dispatch(startLogin('google', this.props.history));
+  }
 
   render() {
     return (
@@ -16,7 +18,7 @@ export class Login extends Component {
             <div className="callout callout-auth">
               <h3>Login</h3>
               <p>Login with your google account.</p>
-              <button className="button" ref="github" onClick={this.onLogin}>Login with Google</button>
+              <button className="button" ref="google" onClick={this.onLogin.bind(this)}>Login with Google</button>
             </div>
           </div>
         </div>
