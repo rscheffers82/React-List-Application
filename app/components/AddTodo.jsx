@@ -6,16 +6,15 @@ import { startAddTodo } from 'actions';
 // e.g. somevar.AddTodo()
 // only used for testing
 export class AddTodo extends Component {
-  onSubmit = (e)=> {
+  onSubmit = (e) => {
     e.preventDefault();
-      var {dispatch} = this.props;
-      var todoText = this.refs.todoText.value;
+    debugger;
+      const { dispatch } = this.props;
+      const todoText = this.refs.todoText.value;
 
       if ( todoText.length > 0 ) {
         this.refs.todoText.value = '';
         dispatch( startAddTodo(todoText) );
-        // because we use connect, we have access to the dispatch function in props. We just need to pull
-        // it off as done in line 11, after e.preventDefault().
       } else {
         this.refs.todoText.focus();
       }
@@ -23,9 +22,13 @@ export class AddTodo extends Component {
   render() {
     return (
       <div className='container__footer'>
-        <form ref="form" onSubmit={this.onSubmit} className="add-todo">
-          <input type="text" ref="todoText" placeholder="What do you need to do..."/>
-          <button className="button expanded">Add...</button>
+        <form ref="form" onSubmit={this.onSubmit.bind(this)} className="add-todo">
+          <div class="input-group mb-3">
+            <input type="text" className="form-control" ref="todoText" placeholder="What do you need to do..."/>
+            <div class="input-group-append">
+              <button className="button expanded input-group-text">Add...</button>
+            </div>
+          </div>
         </form>
       </div>
     );
@@ -34,5 +37,3 @@ export class AddTodo extends Component {
 
 // AddTodo doesn't need any vars from the store, therefore connect() can remain empty.
 export default connect()(AddTodo);
-
-// module.exports = AddTodo;

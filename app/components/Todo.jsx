@@ -3,9 +3,7 @@ import  {connect} from 'react-redux';
 import moment from 'moment';
 import { startToggleTodo } from 'actions';
 
-export class Todo extends Component {
-  render() {
-    const {id, text, completed, createdAt, completedAt, dispatch} = this.props;
+const Todo = ({ id, text, completed, createdAt, completedAt, dispatch }) => {
     const todoClassName = completed ? 'todo todo-completed' : 'todo';
 
     const renderDate = () => {
@@ -33,7 +31,6 @@ export class Todo extends Component {
         </div>
       </div>
     );
-  }
 };
 
 export default connect()(Todo);
