@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { startLogin } from 'actions';
 
 // this export is used for tests
@@ -10,20 +9,18 @@ export class Login extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1 className="page-title"></h1>
-        <div className="row">
-          <div className="columns small-centered small-10 midium-6 large-4">
+    return ([
+      <h1 className="page-title">React To-do</h1>,
+        <div className="row justify-content-center">
+          <div className="col-6">
             <div className="callout callout-auth">
               <h3>Login</h3>
               <p>Login with your google account.</p>
-              <button className="button" ref="google" onClick={this.onLogin.bind(this)}>Login with Google</button>
+              <button onClick={this.onLogin}>Login with Google</button>
             </div>
-          </div>
         </div>
       </div>
-    );
+    ]);
   }
 };
 // using the default to pass to connect
