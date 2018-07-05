@@ -19,9 +19,8 @@ try {
 module.exports = {
   // context: path.resolve(__dirname, 'app'),
   entry: [
-    './node_modules/jquery/dist/jquery.min.js',
-    // './node_modules/foundation-sites/dist/foundation.min.js',
     'babel-polyfill',
+    './node_modules/jquery/dist/jquery.min.js',
     './app/app.jsx'
   ],
   output: {
@@ -90,6 +89,9 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     compress: false,
     port: 3000,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map'
 

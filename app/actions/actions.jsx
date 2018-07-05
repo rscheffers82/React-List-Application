@@ -1,5 +1,5 @@
 import moment from 'moment';
-import firebase, {firebaseRef, githubProvider, loginProvider} from 'app/firebase/'
+import firebase, {firebaseRef, loginProvider} from 'app/firebase/'
 
 export const setSearchText = (searchText) => ({
   type: 'SET_SEARCH_TEXT',
@@ -59,19 +59,19 @@ export const startAddTodos = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     var todosRef = firebaseRef.child(`users/${uid}/todos`);
-
-    return todosRef.once('value').then( (snapshot) => {
-      var todos = snapshot.val() || {};
-      var todosArray = [];
-      // Transform Object into an array
-      Object.keys( todos ).forEach( ( todoID ) => {
-        todosArray.push({
-          id: todoID,
-          ...todos[todoID]
+    return todosRef.once('value')
+      .then( (snapshot) => {
+        var todos = snapshot.val() || {};
+        var todosArray = [];
+        // Transform Object into an array
+        Object.keys( todos ).forEach( ( todoID ) => {
+          todosArray.push({
+            id: todoID,
+            ...todos[todoID]
+          });
         });
-      });
 
-      dispatch( addTodos(todosArray) );
+        dispatch( addTodos(todosArray) );
     // }, (e) => {
     //   console.log('Unable to fetch data from FireBase', e);
     });
@@ -101,22 +101,30 @@ export const startToggleTodo = (id, completed) => {
 
 export const startLogin = (platform, history) => {
   return (dispatch, getState) => {
-    // return firebase.auth().signInWithPopup(githubProvider).then( (result) => {
-    // console.log('platform(into actions.jsx): ', platform)
-    return firebase.auth().signInWithPopup(loginProvider[platform]).then( (result) => {
-      console.log('Auth worked!', result);
-      history.push('/todos');
-    }, (error) => {
-      console.log('Unable to auth', error);
-    });
+    return firebase.auth().signInWithPopup(loginProvider[platform])
+      .then( (result) => {
+        dispatch(setUser(result.user));
+        console.log('Auth worked!', result);
+        history.push('/todos');
+        dispatch(startAddTodos());
+      }, 
+      (error) => {
+        console.log('Unable to auth', error);
+      });
   };
 };
 
+export const setUser = ({ displayName, photoURL, uid }) => ({
+  type: 'LOGIN',
+  user: { displayName, photoURL, uid }
+});
+
 export const startLogout = (history) => {
   return (dispatch, getState) => {
-    return firebase.auth().signOut().then( () => {
-      history.push('/');
-      console.log('Logged out!');
-    });
+    return firebase.auth().signOut()
+      .then( () => {
+        history.push('/');
+        console.log('Logged out!');
+      });
   };
 };

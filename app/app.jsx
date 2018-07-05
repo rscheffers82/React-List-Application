@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import routes from 'app/router';
 import 'applicationStyles';
 
@@ -10,5 +10,5 @@ ReactDOM.render(
   <Provider store={store}>
     {routes}
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

@@ -8,24 +8,23 @@ import { startAddTodo } from 'actions';
 export class AddTodo extends Component {
   onSubmit = (e) => {
     e.preventDefault();
-    debugger;
-      const { dispatch } = this.props;
-      const todoText = this.refs.todoText.value;
-
-      if ( todoText.length > 0 ) {
-        this.refs.todoText.value = '';
-        dispatch( startAddTodo(todoText) );
-      } else {
-        this.refs.todoText.focus();
-      }
+    const { dispatch } = this.props;
+    const todoText = this.refs.todoText.value;
+    
+    if ( todoText.length > 0 ) {
+      this.refs.todoText.value = '';
+      dispatch( startAddTodo(todoText) );
+    } else {
+      this.refs.todoText.focus();
+    }
   }
   render() {
     return (
       <div className='container__footer'>
-        <form ref="form" onSubmit={this.onSubmit.bind(this)} className="add-todo">
-          <div class="input-group mb-3">
+        <form ref="form" onSubmit={this.onSubmit} className="add-todo">
+          <div className="input-group mb-3">
             <input type="text" className="form-control" ref="todoText" placeholder="What do you need to do..."/>
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button className="button expanded input-group-text">Add...</button>
             </div>
           </div>
