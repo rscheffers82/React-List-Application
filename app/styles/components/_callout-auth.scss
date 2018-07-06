@@ -8,3 +8,14 @@
     margin-bottom: 2rem;
   }
 }
+
+button {
+  padding: 5px 15px;
+  background-color: transparent;
+  transition: all .3s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

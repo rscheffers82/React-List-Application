@@ -1,5 +1,8 @@
 body {
   background: url(https://i.pinimg.com/originals/73/bc/f0/73bcf0a898f294db2d82b72b35d79fd8.jpg) no-repeat center center fixed;
+  background: url(http://www.accommodationsjasper.com/SBaxter/MALIGNE%20STITCH.jpg) no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
 }
 
 input {
@@ -13,14 +16,21 @@ input {
 }
 
 .container {
-  background-color: $light-grey;
+  background-color: rgba(250,250,250,.95);
   border: 1px solid $light-grey-border;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 0;
   margin-bottom: 2rem;
-  -webkit-box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
-  -moz-box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
-  box-shadow: 4px 4px 25px 5px rgba(25, 25, 25, 0.6);
+  -webkit-box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
+  -moz-box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
+  box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
+
+  @media all and (max-width: 575px) {
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
 }
 
 .container__header {
@@ -42,8 +52,6 @@ input {
 
   }
 
-
-
   > :last-child {
     align-items: center;
     display: flex;
@@ -60,4 +68,9 @@ input {
 .container__footer {
   padding: 1rem 1rem 0 1rem;
   border-top: 1px solid $light-grey-border;
+}
+
+.blue-border {
+  border: 1px solid #65A3BF;
+  border-radius: 0px;
 }

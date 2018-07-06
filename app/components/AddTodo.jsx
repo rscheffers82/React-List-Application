@@ -23,9 +23,9 @@ export class AddTodo extends Component {
       <div className='container__footer'>
         <form ref="form" onSubmit={this.onSubmit} className="add-todo">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" ref="todoText" placeholder="What do you need to do..."/>
+            <input type="text" className="form-control blue-border" ref="todoText" placeholder="What do you need to do..."/>
             <div className="input-group-append">
-              <button className="button expanded input-group-text">Add...</button>
+              <button className="button expanded input-group-text blue-border">Add...</button>
             </div>
           </div>
         </form>

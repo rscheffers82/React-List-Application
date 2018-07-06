@@ -10,13 +10,13 @@ export class Login extends Component {
 
   render() {
     return ([
-      <h1 className="page-title">React To-do</h1>,
+      <h1 className="page-title">To-do List</h1>,
         <div className="row justify-content-center">
           <div className="col-6">
-            <div className="callout callout-auth">
+            <div className="container callout callout-auth">
               <h3>Login</h3>
               <p>Login with your google account.</p>
-              <button onClick={this.onLogin}>Login with Google</button>
+              <button className="blue-border" onClick={this.onLogin}>Login with Google</button>
             </div>
         </div>
       </div>
