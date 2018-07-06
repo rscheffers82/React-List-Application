@@ -12,7 +12,7 @@ export class Login extends Component {
     return ([
       <h1 className="page-title">To-do List</h1>,
         <div className="row justify-content-center">
-          <div className="col-6">
+          <div className="col-lg-4 col-md-6 col-sm12">
             <div className="container callout callout-auth">
               <h3>Login</h3>
               <p>Login with your google account.</p>
