@@ -93,23 +93,4 @@ module.exports = {
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map'
 
-};
-
-  // externals: {
-  //   jquery: 'jQuery'
-  // },
-  // plugins: [
-  //   new webpack.ProvidePlugin({
-  //     '$': 'jquery',
-  //     'jQuery': 'jquery'
-  //   }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compressor: {
-    //     warnings: false
-    //   }
-    // }),
-  // ],
- 
-
-
- 
+}; 
