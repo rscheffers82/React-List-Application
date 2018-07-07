@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run build && node server.js",
     "test": "SET NODE_ENV=test& karma start",
-    "build": "node ./node_modules/webpack/bin/webpack.js --mode production",
-    "dev": "node ./node_modules/webpack/bin/webpack.js --mode development",
-    "watch": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --mode development"
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack-dev-server --hot --progress --mode development"
   },
   "author": "Roy Scheffers",
   "license": "MIT",
