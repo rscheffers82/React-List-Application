@@ -2,13 +2,13 @@
   "name": "react-todo-app",
   "version": "3.0.1",
   "description": "React ToDo Application",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "npm run build && node server.js",
-    "test": "SET NODE_ENV=test& karma start",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "watch": "webpack-dev-server --hot --progress --mode development"
+    "watch": "webpack-dev-server --hot --progress --mode development",
+    "test": "SET NODE_ENV=test& karma start"
   },
   "author": "Roy Scheffers",
   "license": "MIT",
