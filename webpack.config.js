@@ -82,8 +82,6 @@ module.exports = {
         MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID)
       }
     })
-
-
   ],
   devServer: {
     contentBase: path.join(__dirname, 'public'),
