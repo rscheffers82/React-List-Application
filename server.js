@@ -15,6 +15,10 @@ app.use(function (req, res, next){
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/*', function(req, res){
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 app.listen(PORT, function () {
   console.log('Express server is up on port ' + PORT);
 });
