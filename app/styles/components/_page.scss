@@ -1,8 +1,9 @@
 body {
-  background: url(https://i.pinimg.com/originals/73/bc/f0/73bcf0a898f294db2d82b72b35d79fd8.jpg) no-repeat center center fixed;
+  // background: url(https://i.pinimg.com/originals/73/bc/f0/73bcf0a898f294db2d82b72b35d79fd8.jpg) no-repeat center center fixed;
   background: url(http://www.accommodationsjasper.com/SBaxter/MALIGNE%20STITCH.jpg) no-repeat center center fixed;
   background-size: cover;
   overflow-x: hidden;
+  font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif
 }
 
 input {
@@ -17,18 +18,12 @@ input {
 
 .container {
   background-color: rgba(250,250,250,.95);
-  border: 1px solid $light-grey-border;
-  border-radius: 3px;
+  border: 1px solid $dark-grey-border;
+  border-radius: 5px;
   padding: 0;
   margin-bottom: 2rem;
-  -webkit-box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
-  -moz-box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
-  box-shadow: 2px 2px 15px 5px rgba(25, 25, 25, 0.6);
-
+  box-shadow: 4px 4px 25px 5px rgba(25,25,25,.6);
   @media all and (max-width: 575px) {
-    border-radius: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
   }
 }
@@ -59,6 +54,10 @@ input {
 
 }
 
+.no-border-radius {
+  border-radius: 0;
+}
+
 .container__message {
   color: $light-color;
   margin: 2rem auto;
@@ -71,6 +70,7 @@ input {
 }
 
 .blue-border {
-  border: 1px solid #65A3BF;
+  border: 1px solid #91bafd;
+  border: 1px solid rgba(0, 123, 255, .5);
   border-radius: 0px;
 }

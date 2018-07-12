@@ -25,7 +25,7 @@ export class AddTodo extends Component {
           <div className="input-group mb-3">
             <input type="text" className="form-control blue-border" ref="todoText" placeholder="What do you need to do..."/>
             <div className="input-group-append">
-              <button className="button expanded input-group-text blue-border">Add...</button>
+              <button className="btn btn-primary no-border-radius">Add...</button>
             </div>
           </div>
         </form>
