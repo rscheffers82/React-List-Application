@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogin } from 'actions';
 
 // this export is used for tests
-const Login = ({ dispatch, history }) => {
+export const Login = ({ dispatch, history, loggedIn }) => {
   const onLogin = () => {
     dispatch(startLogin('google', history));
   }
-
-  return ([
+  return !loggedIn ? ([
     <h1 key="h1" className="page-title">To-do List</h1>,
     <div key="login" className="row justify-content-center">
       <div className="col-lg-4 col-md-6 col-sm12">
@@ -19,7 +19,14 @@ const Login = ({ dispatch, history }) => {
         </div>
       </div>
     </div>
-  ]);
+  ]) : (
+    <Redirect to='/todos' />
+  )
 };
+
+const mapStateToProps = state => ({
+  loggedIn: Object.keys(state.auth).length > 0,
+});
+
 // using the default to pass to connect
-export default connect()(Login);
+export default connect(mapStateToProps)(Login);

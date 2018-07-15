@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import TodoList from 'TodoList';
@@ -6,13 +7,12 @@ import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 import { startLogout } from 'actions';
 
-export const TodoApp = ({ dispatch, history }) =>{
+export const TodoApp = ({ dispatch, history, loggedIn }) =>{
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(startLogout(history));
   }
-
-    return (
+    return loggedIn ? (
       <div>
         <div className="page-actions">
           <a href="#" onClick={onLogout}>
@@ -34,10 +34,17 @@ export const TodoApp = ({ dispatch, history }) =>{
           </div>
         </div>
       </div>
-    );
+    ) : (
+      <Redirect to='/login' />
+    )
 };
+
+const mapStateToProps = state => ({
+  loggedIn: Object.keys(state.auth).length > 0,
+});
+
 // ES6 syntax to use import instead of require
-export default connect()(TodoApp);
+export default connect(mapStateToProps)(TodoApp);
 
 // below is the older syntax
 // modules.exports = TodoApp;
