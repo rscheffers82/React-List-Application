@@ -104,9 +104,6 @@ export const startLogin = (platform, history) => {
         return firebase.auth().signInWithPopup(loginProvider[platform])
             .then( (result) => {
                 dispatch(setUser(result.user));
-                console.log('Auth worked!', result);
-                history.push('/todos');
-                dispatch(startAddTodos());
             }, 
             (error) => {
                 console.log('Unable to auth', error);
