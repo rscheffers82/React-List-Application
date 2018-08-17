@@ -1,33 +1,32 @@
 import React from 'react';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
-
+import {
+  BrowserRouter as Router, Route, Switch, Redirect,
+} from 'react-router-dom';
 import TodoApp from 'TodoApp';
 import Login from 'Login';
-import firebase from 'app/firebase/';
+import { connect } from 'react-redux';
 
-// middleware function that integrates with react-route
-// replace is the react route or URL
-// next() signifies to continue
-// load the middleware in using onEnter and specify the function to run
-var requireLogin = (nextState, replace, next) => {
-  if (!firebase.auth().currentUser) {
-    replace('/');
-  }
-  next();
-};
-
-var redirectIfLoggedIn = (nextState, replace, next) => {
-  if (firebase.auth().currentUser) {
-    replace('/todos');
-  }
-  next();
-};
-
-export default (
-  <Router history={hashHistory}>
-    <Route path='/'>
-      <Route path='todos' component={TodoApp} onEnter={requireLogin}/>
-      <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
-    </Route>
+const Routes = () => (
+  <Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/todos" component={TodoApp} />
+        <Redirect to="/login" />
+      </Switch>
   </Router>
 );
+
+export default Routes;
+
+//Private router function
+let PrivateRoute = ({ component: Component, loggedIn, ...rest }) => {
+  return (
+    <Route {...rest} render={props => loggedIn ? <Component {...props} /> : <Redirect to="/login" />} />
+  );
+};
+
+const mapStateToProps = state => ({
+  loggedIn: Object.keys(state.auth).length > 0,
+});
+
+PrivateRoute = connect(mapStateToProps)(PrivateRoute);

@@ -58,14 +58,15 @@ export const todosReducer = (state = [], action) => {
   }
 };
 
-export const authReducer = (state = {}, action) => {
+export const authReducer = (state = {
+  displayName: '',
+  photoURL: '',
+  uid: null,
+}, action) => {
   switch (action.type) {
 
     case 'LOGIN':
-        return {
-          // ...state,
-          uid: action.uid
-        };
+        return { ...action.user };
       case 'LOGOUT':
       return {};
 

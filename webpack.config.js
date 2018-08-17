@@ -1,6 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
-var envFile = require('node-env-file');
+const webpack = require('webpack');
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const envFile = require('node-env-file');
 // on heroku the environment var is set to production, on localhost it doesn't exist and thus is set to development
 // to set the NODE_ENV var once run the following in the terminal
 // NODE_ENV=production webpack
@@ -15,23 +17,60 @@ try {
 }
 
 module.exports = {
+  // context: path.resolve(__dirname, 'app'),
   entry: [
-    'script!jquery/dist/jquery.min.js',
-    'script!foundation-sites/dist/foundation.min.js',
+    'babel-polyfill',
+    './node_modules/jquery/dist/jquery.min.js',
     './app/app.jsx'
   ],
-  externals: {
-    jquery: 'jQuery'
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }, {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }, {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss', '.css'],
+    modules: [
+      'node_modules',
+      './app/components',
+      './app/api',
+    ],
+    alias: {
+      app: path.resolve(__dirname, 'app'),
+      applicationStyles: path.resolve(__dirname, 'app/styles/app.scss'),
+      actions: path.resolve(__dirname, 'app/actions/actions.jsx'),
+      reducers: path.resolve(__dirname, 'app/reducers/reducers.jsx'),
+      configureStore: path.resolve(__dirname, 'app/store/configureStore.jsx'),
+    }
   },
   plugins: [
+    // new CleanWebpackPlugin(['public']);
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -44,44 +83,14 @@ module.exports = {
       }
     })
   ],
-  output: {
-    path: __dirname,
-    filename: './public/bundle.js'
-  },
-  resolve: {
-    root: __dirname,
-    modulesDirectories: [
-      'node_modules',
-      './app/components',
-      './app/api'
-    ],
-    alias: {
-      app: 'app',
-      applicationStyles: 'app/styles/app.scss',
-      actions: 'app/actions/actions.jsx',
-      reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx',
-    },
-    extensions: ['', '.js', '.jsx']
-  },
-  module: {
-    loaders: [
-      {
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        },
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/
-      }
-    ]
-  },
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, './node_modules/foundation-sites/scss')
-    ]
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: false,
+    port: 3000,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map'
-};
 
- 
+}; 

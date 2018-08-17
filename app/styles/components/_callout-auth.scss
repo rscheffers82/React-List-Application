@@ -1,10 +1,23 @@
 .callout-auth {
   background-color: $light-grey;
-  border: 1px solid $light-grey-border;
+  border-radius: 0px;
   padding: 2rem;
   text-align: center;
+  box-shadow: none;
+
 
   h3, p {
     margin-bottom: 2rem;
   }
+}
+
+button {
+  padding: 5px 15px;
+  background-color: transparent;
+  transition: all .3s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
